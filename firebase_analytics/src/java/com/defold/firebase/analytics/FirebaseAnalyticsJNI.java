@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import org.json.JSONException;
 
 public class FirebaseAnalyticsJNI {
-    private static final String TAG = "FirebaseAnalyticsJNI";
+    private static final String TAG = "FirebaseJNI";
     
     public static native void firebaseAddToQueue(int msg, String json);
 
@@ -27,11 +27,38 @@ public class FirebaseAnalyticsJNI {
         this.activity = activity;
     }
 
+    public static void logActivityContents(Activity activity) {
+        if (activity == null) {
+            Log.d(TAG, "Analytics: Activity is null");
+            return;
+        }
+
+        // Activityのインスタンス自体（toString()の内容）をログに出力
+        Log.d(TAG, "Analytics: Activity instance: " + activity.toString());
+
+        // Activityのクラス名をログに出力
+        Log.d(TAG, "Analytics: Activity class: " + activity.getClass().getName());
+
+        // Activityのタイトル（setTitleで設定したもの）をログに出力
+        CharSequence title = activity.getTitle();
+        Log.d(TAG, "Analytics: Activity title: " + (title != null ? title.toString() : "null"));
+
+        // Activityのインテント情報をログに出力
+        Log.d(TAG, "Analytics: Activity intent: " + activity.getIntent());
+
+        // その他、必要な情報があればここでログに出力する
+        // 例: Activityのハッシュコードや、独自に管理しているフィールドなど
+        Log.d(TAG, "Analytics: Activity hashCode: " + activity.hashCode());
+    }
+
     public void initialize() {
+        Log.d(TAG, "FirebaseAnalytics初期化関数が呼び出された");
+        logActivityContents(activity);
         this.firebaseAnalytics = FirebaseAnalytics.getInstance(activity);
     }
 
     public void getInstanceId() {
+        Log.d(TAG, "FirebaseAnalyticsのID取得関数が呼び出された");
         this.firebaseAnalytics.getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(Task<String> task) {
