@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import org.json.JSONException;
 
 public class FirebaseAnalyticsJNI {
-    private static final String TAG = "FirebaseAnalyticsJNI";
+    private static final String TAG = "FirebaseJNI";
     
     public static native void firebaseAddToQueue(int msg, String json);
 
@@ -28,10 +28,12 @@ public class FirebaseAnalyticsJNI {
     }
 
     public void initialize() {
+        Log.d(TAG, "Firebase Analytics初期化関数が呼び出された");
         this.firebaseAnalytics = FirebaseAnalytics.getInstance(activity);
     }
 
     public void getInstanceId() {
+        Log.d(TAG, "AnalyticsのID取得関数が呼び出された");
         this.firebaseAnalytics.getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(Task<String> task) {
