@@ -34,6 +34,7 @@ public class FirebaseAnalyticsJNI {
         Log.d(TAG, "Analytics: FirebaseAppの数（初期化前）は" + FirebaseApp.getApps(activity.getApplicationContext()).size());
         this.firebaseAnalytics = FirebaseAnalytics.getInstance(activity);
         Log.d(TAG, "Analytics: FirebaseAppの数（初期化後）は" + FirebaseApp.getApps(activity.getApplicationContext()).size());
+        Log.d(TAG , "FirebaseAppのOptions: " + FirebaseApp.getInstance().getOptions().toString());
     }
 
     public void getInstanceId() {
