@@ -63,7 +63,8 @@ public class FirebaseAnalyticsJNI {
     }
 
     public void logEvent(String event_name) {
-        firebaseAnalytics.logEvent(event_name, null);
+        Log.d(TAG, "logEvent関数が呼ばれた, event_name: " + event_name);
+        FirebaseAnalytics.getInstance(activity).logEvent(event_name, null);
     }
 
     public void logEventString(String param_name, String param, String event_name) {
