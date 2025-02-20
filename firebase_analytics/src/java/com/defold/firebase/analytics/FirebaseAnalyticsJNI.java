@@ -68,18 +68,21 @@ public class FirebaseAnalyticsJNI {
     }
 
     public void logEventString(String param_name, String param, String event_name) {
+        Log.d(TAG, "logEventString関数が呼ばれた, event_name: " + event_name);
         Bundle bundle = new Bundle();
         bundle.putString(param_name, param);
         firebaseAnalytics.logEvent(event_name, bundle);
     }
 
     public void logEventInt(String param_name, int param, String event_name) {
+        Log.d(TAG, "logEventInt関数が呼ばれた, event_name: " + event_name);
         Bundle bundle = new Bundle();
         bundle.putInt(param_name, param);
         firebaseAnalytics.logEvent(event_name, bundle);
     }
 
     public void logEventNumber(String param_name, double param, String event_name) {
+        Log.d(TAG, "logEventNumber関数が呼ばれた, event_name: " + event_name);
         Bundle bundle = new Bundle();
         bundle.putDouble(param_name, param);
         firebaseAnalytics.logEvent(event_name, bundle);
@@ -114,7 +117,8 @@ public class FirebaseAnalyticsJNI {
     }
 
     public void sendEvent(String event_name) {
-        firebaseAnalytics.logEvent(event_name, g_EventParams);
+        Log.d(TAG, "sendEvent関数が呼ばれた, event_name: " + event_name);
+        FirebaseAnalytics.getInstance(activity).logEvent(event_name, g_EventParams);
     }
 
     public void closeEvent() {
