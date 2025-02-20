@@ -5,6 +5,8 @@ import android.app.Activity;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.FirebaseApp;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +31,9 @@ public class FirebaseAnalyticsJNI {
 
     public void initialize() {
         Log.d(TAG, "Firebase Analytics初期化関数が呼び出された");
+        Log.d(TAG, "Analytics: FirebaseAppの数（初期化前）は" + FirebaseApp.getApps(activity.getApplicationContext()).size());
         this.firebaseAnalytics = FirebaseAnalytics.getInstance(activity);
+        Log.d(TAG, "Analytics: FirebaseAppの数（初期化後）は" + FirebaseApp.getApps(activity.getApplicationContext()).size());
     }
 
     public void getInstanceId() {
